@@ -1,0 +1,84 @@
+/* Header.css */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #fff; /* Black background */
+    color: #003052; /* White text */
+  }
+.logo-link:visited, .logo-link{
+    color: #003052;
+    text-decoration: none;
+}
+  
+  .logo-and-company-name {
+    display: flex; /* Align logo and company name horizontally */
+    align-items: center; /* Center items vertically */
+    margin-right: 50px;
+  }
+  
+  .logo-container img {
+    width: 80px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 7px; /* Space between logo and company name */
+    padding: 0;
+  }
+  
+  .company-name {
+    font-size: 1.3rem; /* Adjust size as needed */
+    margin: 0; /* Remove default margin */
+    padding: 0;
+    /* If you have specific font styles, add them here */
+  }
+  
+  .navbar {
+    display: flex;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin-right: 20px; /* Space between nav items */
+  }
+  
+  .nav-links li a {
+    text-decoration:wavy;
+    font-weight: 600;
+    color: #003052;
+    
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #04b4e0; /* Or any color for hover state */
+  }
+  
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links,
+    .logo-and-company-name {
+      display: none;
+    }
+  
+    .navbar.show .nav-links,
+    .navbar.show .logo-and-company-name {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .menu-toggle {
+      display: inline-block;
+    }
+  }
+  

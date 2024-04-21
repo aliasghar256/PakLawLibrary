@@ -1,0 +1,52 @@
+/* CSS */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #003052; /* Choose a color that matches the image */
+    padding: 5px;
+    border-radius: 20px; /* Adjust to match the desired curvature */
+    /* Adjust to match desired shadow */
+    width: 50vw;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+  }
+  
+  .search-input {
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white; /* Or any other color */
+    border-radius: 15px; /* Should be less than the form to fit inside */
+    margin-right: 10px; /* Adjust space between input and button */
+  }
+  
+  .search-input::placeholder {
+    color: rgba(255,255,255,0.7); /* Lighter color for placeholder */
+  }
+  
+  .search-button {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px; /* Match the curvature of the form */
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow for the button */
+  }
+  
+  /* Remove outline on focus for input and button */
+  .search-input:focus, .search-button:focus {
+    outline: none;
+  }
+  
+  /* Additional styles for interaction */
+  .search-button:hover {
+    background-color: #e5e5e5; /* Light grey for hover effect */
+  }
+  
+  /* Adjust to ensure cross-browser consistency */
+  body {
+    font-family: 'Lato', sans-serif; /* Or any font of your choice */
+  }
+  
