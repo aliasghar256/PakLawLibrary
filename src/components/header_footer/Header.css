@@ -1,11 +1,12 @@
 /* Header.css */
 .header {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 20px; /* Adjust padding as needed */
     background-color: #fff; /* Black background */
     color: #003052; /* White text */
+
   }
 .logo-link:visited, .logo-link{
     color: #003052;
@@ -15,6 +16,8 @@
   .logo-and-company-name {
     display: flex; /* Align logo and company name horizontally */
     align-items: center; /* Center items vertically */
+    justify-content: flex-start;
+
     margin-right: 50px;
   }
   
@@ -32,6 +35,11 @@
     /* If you have specific font styles, add them here */
   }
   
+  .nav-container{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .navbar {
     display: flex;
   }
@@ -76,6 +84,7 @@
       flex-direction: column;
       align-items: center;
     }
+
   
     .menu-toggle {
       display: inline-block;

@@ -22,22 +22,24 @@ const Header = () => {
       <button className="menu-toggle" onClick={toggleNav}>
         Menu
       </button>
-      <nav className={`navbar ${isNavVisible ? "show" : ""}`}>
-        <ul className="nav-links">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/about">About Us</a>
-          </li>
-          <li>
-            <a href="/projects">Projects</a>
-          </li>
-          <li>
-            <a href="/contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
+      <span className="nav-container">
+        <nav className={`navbar ${isNavVisible ? "show" : ""}`}>
+          <ul className="nav-links">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/about">About Us</a>
+            </li>
+            <li>
+              <a href="/projects">Projects</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </span>
     </header>
   );
 };

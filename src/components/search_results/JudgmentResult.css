@@ -1,0 +1,52 @@
+/* JudgmentResult.css */
+.judgment-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .judgment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+  }
+  
+  .judgment-body p, .judgment-footer p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .judgment-header h2 {
+    margin: 0;
+    color: #123456;
+  }
+  
+  .judgment-header h3 {
+    margin: 0;
+    color: #334455;
+    font-weight: normal;
+  }
+  
+  .view-judgment-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #123456;
+    color: white;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  
+  .view-judgment-btn:hover {
+    background-color: #0d2a52;
+  }
+  
+  /* Additional styles for responsiveness or specific elements can be added as needed */
+      

@@ -1,13 +1,18 @@
 //SearchBar.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, setIsLoading }) {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(query);
+    if (setIsLoading) {
+      setIsLoading(true);
+    }
+    navigate(`/searchresults?query=${encodeURIComponent(query)}`);
   };
 
   return (

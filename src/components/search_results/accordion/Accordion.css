@@ -1,0 +1,40 @@
+.accordion {
+    border: 1px solid #c3f77c;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .accordion-title {
+    padding: 10px;
+    background-color: #c3f77c;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .accordion-title h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .accordion-content {
+    display: none;
+    padding: 10px;
+    overflow: auto;
+  }
+  
+  .accordion-content.expanded {
+    display: block;
+    max-height: 20%; /* Adjust the max-height as per your requirement */
+  }
+  
+  .preview-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .full-content {
+    height: auto;
+    overflow-y: auto; /* Makes the content scrollable */
+  }
+  
