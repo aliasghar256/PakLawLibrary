@@ -41,41 +41,38 @@ function ViewJudgment() {
 
   return (
     <div className="judgment-container">
-      <div className="header-section">
+      <div className="logo-container">
         <img src="/prussianbluelogo.svg" alt="Logo" className="logo" />
+      </div>
+      <div className="case-meta-container">
         <div className="case-meta">
-          <div>{judgmentData.CaseYear}</div>
-          <div>{new Date(judgmentData.CaseDate).toLocaleDateString()}</div>
-          <div>{judgmentData.Bench}</div>
-          {/* Additional metadata elements here if needed */}
+          <div>Case Year: {judgmentData.CaseYear}</div>
+          <div>
+            Judgment Date:{" "}
+            {new Date(judgmentData.CaseDate).toLocaleDateString()}
+          </div>
+          <div>Bench: {judgmentData.Bench}</div>
+          <div>AFR: {judgmentData.AFR}</div>
         </div>
       </div>
-
+      <div className="case-number">{judgmentData.CaseNo}</div>
       <div className="content-section">
         <div className="decided-by">
           Decided by:
-          <div className="judge-name">
-            TRIBUNAL JUDGE {judgmentData.JudgeID}
-          </div>
+          <div className="judge-name">{judgmentData.JudgeID}</div>
         </div>
-
         <div className="parties-section">
           <div className="party">Between</div>
           <div className="party-name">{judgmentData.Party1}</div>
           <div className="party">and</div>
           <div className="party-name">{judgmentData.Party2}</div>
         </div>
-
         <Accordion
           title="Judgment Text"
           content={judgmentData.JudgmentText}
           previewLength={300}
         />
       </div>
-
-      <a href={`/path-to-case/${judgmentData.CaseNo}`} className="case-link">
-        Read More
-      </a>
     </div>
   );
 }

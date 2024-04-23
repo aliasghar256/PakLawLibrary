@@ -1,26 +1,38 @@
 .judgment-container {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 70%;
   margin: 20px auto;
   padding: 20px;
+  margin-top: 70px;
   background-color: #fff;
-  font-family: 'Times New Roman', Times, serif;
+  position: relative;
 }
 
-.header-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.logo-container {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .logo {
   height: 80px; /* Adjust based on your actual logo's aspect ratio */
 }
 
+.case-meta-container {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
 .case-meta {
   text-align: right;
+}
+
+.case-number {
+  margin-top: 10px; /* Adjust as needed */
+  padding-left: 20px; /* Adjust as needed */
 }
 
 .content-section {
@@ -69,7 +81,6 @@
 .accordion-content.expanded {
   display: block; /* Show content when expanded */
 }
-
 .case-link {
   display: block;
   text-align: center;
