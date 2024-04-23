@@ -6,7 +6,7 @@ import ReactLoading from "react-loading";
 import { useParams } from "react-router-dom";
 
 function ViewJudgment() {
-  const { JudgmentID } = useParams(); // Using useParams to get the JudgmentID from the URL
+  const { JudgmentID } = useParams();
   const [judgmentData, setJudgmentData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,40 +28,51 @@ function ViewJudgment() {
     }
   }, [JudgmentID]);
 
-  return isLoading ? (
-    <ReactLoading
-      type={"balls"}
-      color={"#04b4e0"}
-      height={"20%"}
-      width={"20%"}
-    />
-  ) : (
-    <div className="judgment-container">
-      <h1>Case Judgment</h1>
-      <h2>{judgmentData.CaseNo}</h2>
-      <div className="judgment-details">
-        <p>
-          <strong>Parties:</strong> {judgmentData.Party1} vs{" "}
-          {judgmentData.Party2}
-        </p>
-        <p>
-          <strong>Date:</strong>{" "}
-          {new Date(judgmentData.CaseDate).toLocaleDateString()}
-        </p>
-        <p>
-          <strong>Case Year:</strong> {judgmentData.CaseYear}
-        </p>
-      </div>
-      <Accordion
-        title="Judgment Text"
-        content={judgmentData.JudgmentText}
-        previewLength={300}
+  if (isLoading) {
+    return (
+      <ReactLoading
+        type={"balls"}
+        color={"#04b4e0"}
+        height={"20%"}
+        width={"20%"}
       />
-      <div className="judgment-metadata">
-        <p>
-          <strong>Bench:</strong> {judgmentData.Bench}
-        </p>
+    );
+  }
+
+  return (
+    <div className="judgment-container">
+      <div className="header-section">
+        <img src="/prussianbluelogo.svg" alt="Logo" className="logo" />
+        <div className="case-meta">
+          <div>{judgmentData.CaseYear}</div>
+          <div>{new Date(judgmentData.CaseDate).toLocaleDateString()}</div>
+          <div>{judgmentData.Bench}</div>
+          {/* Additional metadata elements here if needed */}
+        </div>
       </div>
+
+      <div className="content-section">
+        <div className="decided-by">
+          Decided by:
+          <div className="judge-name">
+            TRIBUNAL JUDGE {judgmentData.JudgeID}
+          </div>
+        </div>
+
+        <div className="parties-section">
+          <div className="party">Between</div>
+          <div className="party-name">{judgmentData.Party1}</div>
+          <div className="party">and</div>
+          <div className="party-name">{judgmentData.Party2}</div>
+        </div>
+
+        <Accordion
+          title="Judgment Text"
+          content={judgmentData.JudgmentText}
+          previewLength={300}
+        />
+      </div>
+
       <a href={`/path-to-case/${judgmentData.CaseNo}`} className="case-link">
         Read More
       </a>
