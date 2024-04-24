@@ -5,7 +5,11 @@ import axios from "axios";
 import SearchBar from "../SearchBar";
 import JudgmentResult from "./JudgmentResult";
 import "./SearchResults.css";
-import ReactLoading from "react-loading";
+import { miyagi } from "ldrs";
+
+miyagi.register();
+
+// Default values shown
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -40,12 +44,7 @@ function SearchResults() {
       </div>
       <h1 className="search-results-heading">Search Results</h1>
       {isLoading ? (
-        <ReactLoading
-          type={"cylon"}
-          color={"#04b4e0"}
-          height={"20%"}
-          width={"20%"}
-        />
+        <l-miyagi size="65" stroke="3.5" speed="0.5" color="#04b4e0"></l-miyagi>
       ) : (
         <>
           <p>

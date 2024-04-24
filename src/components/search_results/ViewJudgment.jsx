@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Accordion from "./accordion/Accordion";
 import "./ViewJudgment.css"; // Your stylesheet
 import axios from "axios";
-import ReactLoading from "react-loading";
 import { useParams } from "react-router-dom";
+import { miyagi } from "ldrs";
+
+miyagi.register();
 
 function ViewJudgment() {
   const { JudgmentID } = useParams();
@@ -30,12 +32,7 @@ function ViewJudgment() {
 
   if (isLoading) {
     return (
-      <ReactLoading
-        type={"balls"}
-        color={"#04b4e0"}
-        height={"20%"}
-        width={"20%"}
-      />
+      <l-miyagi size="65" stroke="3.5" speed="0.5" color="#04b4e0"></l-miyagi>
     );
   }
 
