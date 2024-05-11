@@ -5,12 +5,12 @@
     justify-content: space-between;
     padding: 10px 20px; /* Adjust padding as needed */
     margin-bottom: 50px;
-    background-color: #fff; /* Black background */
-    color: #003052; /* White text */
+    background-color: #003052; /* Black background */
+    color: #fff; /* White text */
 
   }
 .logo-link:visited, .logo-link{
-    color: #003052;
+    color: #fff;
     text-decoration: none;
 }
   
@@ -59,7 +59,7 @@
   .nav-links li a {
     text-decoration:wavy;
     font-weight: 600;
-    color: #003052;
+    color: #fff;
     
     transition: color 0.3s ease;
   }
