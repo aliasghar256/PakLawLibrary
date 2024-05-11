@@ -1,51 +1,64 @@
-import React from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import "./PakistanMap.css"; // Ensure you have this CSS file
 
-const geoUrl =
-  process.env.PUBLIC_URL + "/geoBoundaries-PAK-ADM1_simplified.geojson";
+const defaultStyle = {
+  fillColor: "#01411C", // Base color of provinces
+  weight: 1, // Make borders thicker
+  opacity: 1,
+  color: "#FFFFFF", // Set border color to white
+  fillOpacity: 1,
+};
 
-const StyledGeography = styled(Geography)`
-  default: {
-    fill: "#D6D6DA", // Default fill color for regions
-    stroke: "#FFFFFF", // White stroke for better contrast
-    outline: "none"
+const highlightStyle = {
+  weight: 1, // Keep border thickness
+  color: "#FFFFFF", // Border color remains white when highlighted
+  fillColor: "#F5E2C8", // Set fill color to yellow when highlighted
+  fillOpacity: 1,
+};
+
+const PakistanMap = () => {
+  const [geoJsonData, setGeoJsonData] = useState(null);
+
+  useEffect(() => {
+    fetch("/geoBoundaries-PAK-ADM1_simplified.geojson")
+      .then((response) => response.json())
+      .then((data) => setGeoJsonData(data))
+      .catch((error) =>
+        console.error("Error loading the geoJSON data: ", error)
+      );
+  }, []);
+
+  const onEachProvince = (province, layer) => {
+    layer.on({
+      mouseover: (event) => event.target.setStyle(highlightStyle),
+      mouseout: (event) => event.target.setStyle(defaultStyle),
+      click: (event) => {
+        // Implement any click event you'd like here
+        alert(`Clicked on province: ${province.properties.name}`);
+      },
+    });
+  };
+
+  if (!geoJsonData) {
+    return <div>Loading map...</div>;
   }
-  &:hover {
-    fill: "#f00"; // Red fill on hover
-    cursor: "pointer"; // Pointer cursor on hover
-  }
-`;
 
-const PakistanMap = ({ setTooltipContent }) => {
   return (
-    <ComposableMap
-      projectionConfig={{ scale: 1200 }} // Adjust scale as needed for better fit
-      width={800} // Width of the map
-      height={600} // Height of the map
-      style={{ width: "100%", height: "auto" }}
+    <MapContainer
+      center={[30.3753, 69.3451]}
+      zoom={6}
+      scrollWheelZoom={false}
+      style={{ height: "500px", width: "100%" }}
     >
-      <Geographies geography={geoUrl}>
-        {({ geographies, loading, error }) => {
-          if (loading) return <div>Loading...</div>;
-          if (error) return <div>Error loading map data.</div>;
-
-          return geographies.map((geo) => (
-            <StyledGeography
-              key={geo.rsmKey}
-              geography={geo}
-              onMouseEnter={() => {
-                const { shapeName } = geo.properties; // Use the correct property for tooltip
-                setTooltipContent(`${shapeName}: Number of Judgments`);
-              }}
-              onMouseLeave={() => {
-                setTooltipContent("");
-              }}
-            />
-          ));
-        }}
-      </Geographies>
-    </ComposableMap>
+      <GeoJSON
+        data={geoJsonData}
+        onEachFeature={onEachProvince}
+        style={() => defaultStyle}
+      />
+    </MapContainer>
   );
 };
 

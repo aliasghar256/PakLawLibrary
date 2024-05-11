@@ -18,7 +18,7 @@ export default function Home() {
       </div>
       <div>
         <h1>Map of Pakistan</h1>
-        <PakistanMap2 geoJsonData={pakistanGeoJson} />
+        <PakistanMap geoJsonData={pakistanGeoJson} />
       </div>
     </div>
   );

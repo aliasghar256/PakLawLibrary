@@ -1,0 +1,25 @@
+.leaflet-container {
+    background: linear-gradient(180deg, rgba(0,128,0,1) 0%, rgba(50,205,50,1) 100%);
+}
+  
+  .leaflet-popup-content-wrapper {
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.4;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  }
+  
+  .leaflet-tooltip {
+    background-color: white;
+    border: 1px solid #000;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  }
+  
+  .leaflet-container .leaflet-control-attribution {
+    background: transparent;
+    color: white;
+  }
+  
