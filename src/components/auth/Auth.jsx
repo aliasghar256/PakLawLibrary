@@ -1,11 +1,16 @@
 import React from "react";
 import Login from "./Login";
-import { Button, TextField } from "@mui/material";
-
+import { useState } from "react";
+import SignUp from "./SignUp";
 export default function Auth() {
+  const [showLogin, setShowLogin] = useState(true);
   return (
     <div>
-      <Login />
+      {showLogin ? (
+        <Login setShowLogin={setShowLogin} />
+      ) : (
+        <SignUp setShowLogin={setShowLogin} />
+      )}
     </div>
   );
 }

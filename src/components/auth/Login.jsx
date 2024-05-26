@@ -1,48 +1,158 @@
 import React from "react";
 import { useFormik } from "formik";
-import { Button, TextField } from "@mui/material";
+import * as Yup from "yup";
+import {
+  Avatar,
+  Button,
+  Grid,
+  Link,
+  Paper,
+  TextField,
+  Typography,
+  IconButton,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-export default function Login() {
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password should be of minimum 8 characters length")
+    .required("Password is required"),
+});
+
+export default function Login({ setShowLogin }) {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    //   validationSchema: validationSchema,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="email"
-          name="email"
-          label="Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Log In
-        </Button>
-      </form>
-    </div>
+    <Grid
+      container
+      style={{ height: "100vh" }}
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Paper
+        elevation={10}
+        style={{ padding: 20, width: 320, borderRadius: 10 }}
+      >
+        <Grid align="center">
+          <Avatar style={{ backgroundColor: "#1bbd7e" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5" style={{ margin: "10px 0" }}>
+            Login
+          </Typography>
+        </Grid>
+        <form onSubmit={formik.handleSubmit}>
+          <TextField
+            fullWidth
+            id="email"
+            name="email"
+            label="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            id="password"
+            name="password"
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            margin="normal"
+            InputProps={{
+              endAdornment: (
+                <IconButton onClick={handleClickShowPassword}>
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              ),
+            }}
+          />
+          <Link
+            href="#"
+            variant="body2"
+            style={{ display: "block", textAlign: "right", marginBottom: 20 }}
+          >
+            Forgot password?
+          </Link>
+          <Button
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+            style={{ margin: "8px 0", backgroundColor: "#007bff" }}
+          >
+            Login
+          </Button>
+          <Typography>
+            Don't have an account?{" "}
+            <Link
+              onClick={() => {
+                setShowLogin(false);
+              }}
+              variant="body2"
+              style={{ cursor: "pointer" }}
+            >
+              Signup
+            </Link>
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            style={{ margin: "10px 0" }}
+          >
+            Or
+          </Typography>
+          <Button
+            variant="contained"
+            fullWidth
+            startIcon={<FacebookIcon />}
+            style={{
+              margin: "5px 0",
+              backgroundColor: "#3b5998",
+              color: "white",
+            }}
+          >
+            Login with Facebook
+          </Button>
+          <Button
+            variant="outlined"
+            fullWidth
+            startIcon={<GoogleIcon />}
+            style={{ margin: "5px 0" }}
+          >
+            Login with Google
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
   );
 }
