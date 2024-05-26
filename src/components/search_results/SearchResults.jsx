@@ -15,7 +15,7 @@ function SearchResults() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
   const [judgmentData, setJudgmentData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [numberOfJudgments, setNumberOfJudgments] = useState(0);
 
   useEffect(() => {

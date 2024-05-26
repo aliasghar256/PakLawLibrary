@@ -4,11 +4,14 @@ import SearchBar from "./SearchBar";
 import PakistanMap from "./map/PakistanMap";
 import pakistanGeoJson from "./geoBoundaries-PAK-ADM1_simplified.geojson"; // Update the path accordingly
 import PakistanMap2 from "./map/PakistanMap2";
+import Login from "./auth/Login";
+import Header from "./header_footer/Header";
 
 export default function Home() {
   const [content, setContent] = useState("");
   return (
     <div className="home">
+      <Header />
       <div className="search-bar-logo-and-name-container">
         <div className="logo-and-name">
           <img className="logo" src="/prussianbluelogo.svg" alt="logo" />
@@ -16,6 +19,7 @@ export default function Home() {
         </div>
         <SearchBar className="search-bar" />
       </div>
+      <Login />
       <div>
         <h1>Map of Pakistan</h1>
         <PakistanMap geoJsonData={pakistanGeoJson} />

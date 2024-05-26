@@ -12,7 +12,7 @@ export default function SearchBar({ onSearch, setIsLoading }) {
     if (setIsLoading) {
       setIsLoading(true);
     }
-    navigate(`/searchresults?query=${encodeURIComponent(query)}`);
+    navigate(`/dashboard?query=${encodeURIComponent(query)}`);
   };
 
   return (
