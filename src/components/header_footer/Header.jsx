@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Header.css"; // Ensure this file is in the same directory
+import { Button } from "@mui/material";
 
-const Header = () => {
+const Header = ({ setShowLogin }) => {
   const [isNavVisible, setIsNavVisible] = useState(false);
 
   const toggleNav = () => {
@@ -38,6 +39,13 @@ const Header = () => {
               <a href="/contact">Contact</a>
             </li>
           </ul>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setShowLogin(true)}
+          >
+            Log In
+          </Button>
         </nav>
       </span>
     </header>

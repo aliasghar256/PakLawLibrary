@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SearchStyles.css";
+import "./AdvancedSearch.css";
 
 export default function JudgmentSearch() {
   const [data, setData] = useState({
@@ -31,7 +31,7 @@ export default function JudgmentSearch() {
     <form className="search-form">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Keyword(s)..."
         name="query"
         value={data.query}
         onChange={handleForm}

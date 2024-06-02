@@ -39,9 +39,6 @@ function SearchResults() {
   }, [query]);
   return (
     <div className="search-results">
-      <div className="search-bar">
-        <SearchBar setIsLoading={setIsLoading} />
-      </div>
       <h1 className="search-results-heading">Search Results</h1>
       {isLoading ? (
         <l-miyagi size="65" stroke="3.5" speed="0.5" color="#04b4e0"></l-miyagi>
