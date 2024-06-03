@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css"; // Ensure this file is in the same directory
 import { Button } from "@mui/material";
 
-const Header = ({ setShowLogin }) => {
+const Header = ({ setShowAuth }) => {
   const [isNavVisible, setIsNavVisible] = useState(false);
 
   const toggleNav = () => {
@@ -42,7 +42,7 @@ const Header = ({ setShowLogin }) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => setShowLogin(true)}
+            onClick={() => setShowAuth(true)}
           >
             Log In
           </Button>

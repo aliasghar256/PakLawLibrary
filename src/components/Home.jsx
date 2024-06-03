@@ -8,9 +8,10 @@ import Auth from "./auth/Auth";
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   return (
     <div className="home">
-      <Header setShowLogin={setShowLogin} />
+      <Header setShowAuth={setShowAuth} />
       <div className="search-bar-logo-and-name-container">
         <div className="logo-and-name">
           <img className="logo" src="/prussianbluelogo.svg" alt="logo" />
@@ -18,7 +19,7 @@ export default function Home() {
         </div>
         <SearchBar className="search-bar" />
       </div>
-      {showLogin && <Auth />}
+      {showAuth && <Auth setShowAuth={setShowAuth} />}
       <div>
         <h1>Map of Pakistan</h1>
         <PakistanMap geoJsonData={pakistanGeoJson} />

@@ -6,10 +6,13 @@ import {
   Button,
   Grid,
   Link,
-  Paper,
   TextField,
   Typography,
   IconButton,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogActions,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -29,7 +32,7 @@ const validationSchema = Yup.object({
     .required("Confirm Password is required"),
 });
 
-export default function SignUp({ setShowLogin }) {
+export default function SignUp({ setShowLogin , setShowAuth}) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
@@ -49,24 +52,27 @@ export default function SignUp({ setShowLogin }) {
   });
 
   return (
-    <Grid
-      container
-      style={{ height: "100vh" }}
-      alignItems="center"
-      justifyContent="center"
+    <Dialog
+      open
+      onClose={() => setShowLogin(false)}
+      PaperProps={{
+        style: {
+          padding: 20,
+          width: 320,
+          borderRadius: 10,
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        },
+      }}
     >
-      <Paper
-        elevation={10}
-        style={{ padding: 20, width: 320, borderRadius: 10 }}
-      >
-        <Grid align="center">
-          <Avatar style={{ backgroundColor: "#1bbd7e" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5" style={{ margin: "10px 0" }}>
-            Signup
-          </Typography>
-        </Grid>
+      <DialogTitle align="center">
+        <Avatar style={{ backgroundColor: "#1bbd7e", margin: "0 auto" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5" style={{ margin: "10px 0" }}>
+          Signup
+        </Typography>
+      </DialogTitle>
+      <DialogContent>
         <form onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
@@ -172,7 +178,11 @@ export default function SignUp({ setShowLogin }) {
             Login with Google
           </Button>
         </form>
-      </Paper>
-    </Grid>
-  );
-}
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setShowAuth(false)} color="primary">
+          Cancel
+        </Button>
+      </DialogActions>
+    </Dialog>
+);}
