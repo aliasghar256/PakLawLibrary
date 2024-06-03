@@ -32,15 +32,15 @@ export default function JudgmentSearch() {
       <input
         type="text"
         placeholder="Keyword(s)..."
-        name="query"
-        value={data.query}
+        name="keyword"
+        value={data.keyword}
         onChange={handleForm}
         className="search-input"
       />
       <select
         id="courtName"
         name="courtName"
-        value={data.courtName}
+        value={data.court}
         onChange={handleForm}
         className="search-select"
       >

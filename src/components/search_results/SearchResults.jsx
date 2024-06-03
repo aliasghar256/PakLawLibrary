@@ -11,9 +11,9 @@ miyagi.register();
 
 // Default values shown
 
-function SearchResults() {
+function SearchResults({ searchBarIndex }) {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("query");
+  const keyword = searchParams.get("keyword");
   const [judgmentData, setJudgmentData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [numberOfJudgments, setNumberOfJudgments] = useState(0);
@@ -21,7 +21,11 @@ function SearchResults() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `http://127.0.0.1:3001/judgment/searchValue?query=${query}`;
+        setIsLoading(true);
+        let url = `http://127.0.0.1:3001/judgment/keyword_search?keyword=${keyword}`;
+        if (searchBarIndex === 1) {
+          url = `http://127.0.0.1:3001/judgment/advanced_search?keyword=${keyword}`;
+        }
         const response = await axios.get(url);
         setJudgmentData(response.data.results);
       } catch (error) {
@@ -31,12 +35,12 @@ function SearchResults() {
       }
     };
 
-    if (query) {
+    if (keyword) {
       fetchData();
       if (judgmentData != null || judgmentData != undefined)
         setNumberOfJudgments(judgmentData.length);
     }
-  }, [query]);
+  }, [keyword]);
   return (
     <div className="search-results">
       <h1 className="search-results-heading">Search Results</h1>
@@ -45,14 +49,14 @@ function SearchResults() {
       ) : (
         <>
           <p>
-            Displaying {numberOfJudgments} results for: {query}
+            Displaying {numberOfJudgments} results for: {keyword}
           </p>
           {judgmentData &&
             judgmentData.map((judgment) => (
               <JudgmentResult
                 key={judgment.JudgmentID}
                 judgment={judgment}
-                query={query}
+                query={keyword}
               />
             ))}
         </>
