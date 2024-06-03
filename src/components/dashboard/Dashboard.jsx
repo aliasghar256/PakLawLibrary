@@ -6,15 +6,15 @@ import SearchOptions from "./sidebar/SearchOptions";
 import AdvancedSearch from "./searchbars/AdvancedSearch";
 
 export default function Dashboard() {
-  const [searchBarIndex, setSearchBarIndex] = useState([false, true]);
+  const [searchBarIndex, setSearchBarIndex] = useState(0);
   return (
     <>
       <DashboardHeader />
       <h1>Dashboard</h1>
-      {searchBarIndex[0] && <JudgmentSearch />}
-      {searchBarIndex[1] && <AdvancedSearch />}
+      {searchBarIndex === 0 && <JudgmentSearch />}
+      {searchBarIndex === 1 && <AdvancedSearch />}
       <SearchOptions setSearchBarIndex={setSearchBarIndex} />
-      <SearchResults />
+      <SearchResults searchBarIndex={searchBarIndex} />
     </>
   );
 }

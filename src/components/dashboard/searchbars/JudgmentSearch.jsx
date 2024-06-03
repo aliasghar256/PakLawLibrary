@@ -3,7 +3,7 @@ import "./SearchStyles.css";
 
 export default function JudgmentSearch() {
   const [data, setData] = useState({
-    query: "",
+    keyword: "",
     court: "",
   });
 
@@ -26,8 +26,8 @@ export default function JudgmentSearch() {
       <input
         type="text"
         placeholder="Search..."
-        name="query"
-        value={data.query}
+        name="keyword"
+        value={data.keyword}
         onChange={handleForm}
         className="search-input"
       />
