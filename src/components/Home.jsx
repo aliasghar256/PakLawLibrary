@@ -6,7 +6,7 @@ import pakistanGeoJson from "./geoBoundaries-PAK-ADM1_simplified.geojson"; // Up
 import Header from "./header_footer/Header";
 import Auth from "./auth/Auth";
 
-export default function Home() {
+export default function Home({ setUserData }) {
   const [showLogin, setShowLogin] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   return (
@@ -19,7 +19,7 @@ export default function Home() {
         </div>
         <SearchBar className="search-bar" />
       </div>
-      {showAuth && <Auth setShowAuth={setShowAuth} />}
+      {showAuth && <Auth setShowAuth={setShowAuth} setUserData={setUserData} />}
       <div>
         <h1>Map of Pakistan</h1>
         <PakistanMap geoJsonData={pakistanGeoJson} />

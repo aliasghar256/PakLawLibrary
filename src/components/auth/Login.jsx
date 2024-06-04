@@ -20,6 +20,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -30,9 +31,9 @@ const validationSchema = Yup.object({
     .required("Password is required"),
 });
 
-export default function Login({ setShowLogin, setShowAuth }) {
+export default function Login({ setShowLogin, setShowAuth, setUserData }) {
   const [showPassword, setShowPassword] = React.useState(false);
-
+  const navigate = useNavigate();
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -51,7 +52,11 @@ export default function Login({ setShowLogin, setShowAuth }) {
         password: values.password,
       });
       if (response.status === 200) {
-        alert(JSON.stringify(values, null, 2));
+        setUserData({
+          loggedIn: true,
+          token: response.data.Message.token,
+        });
+        navigate("/dashboard");
       }
     },
   });

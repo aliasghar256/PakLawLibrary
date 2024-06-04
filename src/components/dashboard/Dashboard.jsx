@@ -5,8 +5,9 @@ import JudgmentSearch from "./searchbars/JudgmentSearch";
 import SearchOptions from "./sidebar/SearchOptions";
 import AdvancedSearch from "./searchbars/AdvancedSearch";
 
-export default function Dashboard() {
+export default function Dashboard({ userData, setUserData }) {
   const [searchBarIndex, setSearchBarIndex] = useState(0);
+  console.log(userData);
   return (
     <>
       <DashboardHeader />

@@ -13,17 +13,20 @@ import Bookmarks from './components/dashboard/Bookmarks';
 
 
 const App = () => {
+  const [userData, setUserData] = React.useState({
+    loggedIn:false,
+    token: "",
+  });
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setUserData={setUserData} />} />
         <Route path="/about" element={<About />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/viewjudgment/:JudgmentID" element={<ViewJudgment />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard userData={userData} setUserData={setUserData} />} />
         <Route path="/bookmarks" element={<Bookmarks />} />
       </Routes>
     </Router>
