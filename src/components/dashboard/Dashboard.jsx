@@ -11,10 +11,10 @@ export default function Dashboard({ userData, setUserData }) {
   return (
     <>
       <DashboardHeader />
-      <h1>Dashboard</h1>
+      <SearchOptions setSearchBarIndex={setSearchBarIndex} />
+      {/* <h1>Dashboard</h1> */}
       {searchBarIndex === 0 && <JudgmentSearch />}
       {searchBarIndex === 1 && <AdvancedSearch />}
-      <SearchOptions setSearchBarIndex={setSearchBarIndex} />
       <SearchResults searchBarIndex={searchBarIndex} />
     </>
   );

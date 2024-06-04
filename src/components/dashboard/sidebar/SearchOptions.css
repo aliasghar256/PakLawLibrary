@@ -1,5 +1,3 @@
-/* DashboardHeader.css */
-
 .MuiAppBar-root {
     background-color: #003052; /* Dark blue background */
     padding: 0.5rem 1rem; /* Add some padding */
@@ -7,8 +5,9 @@
   }
   
   .MuiTabs-root {
-    display: flex; /* Arrange tabs horizontally */
-    justify-content: space-between; /* Align tabs at opposite ends */
+    display: flex;
+    flex-direction: column; /* Stack tabs vertically */
+    /* justify-content: space-between; (Optional for horizontal alignment) */
   }
   
   .MuiTabs-indicator {
