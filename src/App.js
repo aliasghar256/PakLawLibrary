@@ -34,7 +34,14 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-        <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route
+            path="/bookmarks"
+            element={
+              <ProtectedRoute>
+                <Bookmarks />
+              </ProtectedRoute>
+            }
+          />
       </Routes>
     </Router>
     </UserProvider>

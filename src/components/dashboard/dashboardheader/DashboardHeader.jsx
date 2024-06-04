@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
 import "./DashboardHeader.css";
+import { Button } from "@mui/material";
+import React, { useContext } from "react";
+import UserContext from "../../../UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardHeader() {
+  const { logout } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(userData.token);
+    navigate("/");
+  };
+
   return (
     <>
       <header>
@@ -14,6 +27,9 @@ export default function DashboardHeader() {
               <Link to="/bookmarks">Bookmarks</Link>
             </li>
           </ul>
+          <Button variant="contained" color="primary" onClick={handleLogout}>
+            Logout
+          </Button>
         </nav>
       </header>
     </>
