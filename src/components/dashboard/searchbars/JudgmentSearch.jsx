@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./SearchStyles.css";
 
-export default function JudgmentSearch() {
+export default function JudgmentSearch({ setQuery, token }) {
   const [data, setData] = useState({
     keyword: "",
     court: "",
@@ -21,8 +21,19 @@ export default function JudgmentSearch() {
     "Islamabad Supreme Court",
   ];
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery({
+      headers: {
+        Authorization: `Bearer ${token}`,
+        keyword: data.keyword,
+        court: data.court,
+      },
+    });
+  };
+
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Search..."

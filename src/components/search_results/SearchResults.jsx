@@ -10,7 +10,7 @@ miyagi.register();
 
 // Default values shown
 
-function SearchResults({ searchBarIndex }) {
+function SearchResults({ searchBarIndex, query }) {
   const [searchParams] = useSearchParams();
   const keyword = searchParams.get("keyword");
   const [judgmentData, setJudgmentData] = useState(null);
@@ -22,16 +22,11 @@ function SearchResults({ searchBarIndex }) {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        let url = `http://127.0.0.1:3001/judgment/keyword_search?keyword=${keyword}`;
+        let url = `http://127.0.0.1:3001/judgment/keyword_search`;
         if (searchBarIndex === 1) {
           url = `http://127.0.0.1:3001/judgment/advanced_search?keyword=${keyword}`;
         }
-        const response = await axios.get(url, {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAZ21haWwuY29tIiwiaWQiOiI2NWNmNWYxNWU5OTE3MTE3OWEwNTlkMTYiLCJpYXQiOjE3MTc0Nzg1OTcsImV4cCI6MTcxNzU2NDk5N30.jhk8dqGmcc0nRy8VusnoCPwDX-DmodAkUYeQ1Q44oN8",
-          },
-        });
+        const response = await axios.get(url, query);
         setJudgmentData(response.data.results);
       } catch (error) {
         console.error("Error:", error);
@@ -40,12 +35,12 @@ function SearchResults({ searchBarIndex }) {
       }
     };
 
-    if (keyword) {
+    if (query) {
       fetchData();
       if (judgmentData != null || judgmentData != undefined)
         setNumberOfJudgments(judgmentData.length);
     }
-  }, [keyword]);
+  }, [query]);
   return (
     <div className="search-results">
       <h1 className="search-results-heading">Search Results</h1>
