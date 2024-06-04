@@ -1,12 +1,13 @@
 //SearchResults.jsx
 import DashboardHeader from "./dashboardheader/DashboardHeader";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import JudgmentResult from "../search_results/JudgmentResult";
-
 import "../search_results/SearchResults.css";
 import { miyagi } from "ldrs";
+
+import UserContext from "../../UserContext";
 
 miyagi.register();
 
@@ -17,6 +18,12 @@ function Bookmarks({ searchBarIndex }) {
   const [judgmentData, setJudgmentData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [numberOfJudgments, setNumberOfJudgments] = useState(0);
+  const { userData } = useContext(UserContext);
+  const [buttonPressed, setButtonPressed] = useState(false);
+
+  const handleButtonPressed = () => {
+    setButtonPressed((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +32,7 @@ function Bookmarks({ searchBarIndex }) {
         const url = `http://127.0.0.1:3001/favorites/view`;
         const response = await axios.get(url, {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAZ21haWwuY29tIiwiaWQiOiI2NWNmNWYxNWU5OTE3MTE3OWEwNTlkMTYiLCJpYXQiOjE3MTc0Nzg1OTcsImV4cCI6MTcxNzU2NDk5N30.jhk8dqGmcc0nRy8VusnoCPwDX-DmodAkUYeQ1Q44oN8",
+            Authorization: `Bearer ${userData.token}`,
           },
         });
         setJudgmentData(response.data.favorites);
@@ -38,7 +44,7 @@ function Bookmarks({ searchBarIndex }) {
     };
 
     fetchData();
-  }, []);
+  }, [buttonPressed]);
 
   return (
     <>
@@ -63,6 +69,7 @@ function Bookmarks({ searchBarIndex }) {
                   showHighlight={showHighlight}
                   showAddBookmark={false}
                   showDeleteBookmark={true}
+                  onButtonClick={handleButtonPressed}
                 />
               ))}
           </>

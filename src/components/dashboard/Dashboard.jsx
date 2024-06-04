@@ -11,7 +11,6 @@ export default function Dashboard() {
   const [searchBarIndex, setSearchBarIndex] = useState(0);
   const [query, setQuery] = useState("");
   const { userData } = useContext(UserContext);
-  console.log(userData.token);
   return (
     <>
       <DashboardHeader />
