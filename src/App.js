@@ -10,26 +10,34 @@ import './App.css';
 import Auth from './components/auth/Auth';
 import Dashboard from './components/dashboard/Dashboard';
 import Bookmarks from './components/dashboard/Bookmarks';
+import { UserProvider } from './UserContext';
+import ProtectedRoute from './ProtectedRoute';
+
 
 
 const App = () => {
-  const [userData, setUserData] = React.useState({
-    loggedIn:false,
-    token: "",
-  });
 
   return (
+    <UserProvider>
     <Router>
       <Routes>
-        <Route path="/" element={<Home setUserData={setUserData} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/viewjudgment/:JudgmentID" element={<ViewJudgment />} />
-        <Route path="/dashboard" element={<Dashboard userData={userData} setUserData={setUserData} />} />
+        <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
         <Route path="/bookmarks" element={<Bookmarks />} />
       </Routes>
     </Router>
+    </UserProvider>
   );
 };
 

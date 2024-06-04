@@ -4,12 +4,14 @@ import DashboardHeader from "./dashboardheader/DashboardHeader";
 import JudgmentSearch from "./searchbars/JudgmentSearch";
 import SearchOptions from "./sidebar/SearchOptions";
 import AdvancedSearch from "./searchbars/AdvancedSearch";
+import React, { useContext } from "react";
+import UserContext from "../../UserContext";
 
-export default function Dashboard({ userData, setUserData }) {
+export default function Dashboard() {
   const [searchBarIndex, setSearchBarIndex] = useState(0);
-  const [query, setQuery] = useState({});
-  console.log("User Data from Dash: ", userData);
-  console.log("Query from Dash: ", query);
+  const [query, setQuery] = useState("");
+  const { userData } = useContext(UserContext);
+  console.log(userData.token);
   return (
     <>
       <DashboardHeader />
@@ -20,7 +22,7 @@ export default function Dashboard({ userData, setUserData }) {
       {searchBarIndex === 1 && (
         <AdvancedSearch token={userData.token} setQuery={setQuery} />
       )}
-      <SearchResults searchBarIndex={searchBarIndex} />
+      <SearchResults searchBarIndex={searchBarIndex} query={query} />
     </>
   );
 }

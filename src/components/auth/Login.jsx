@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -21,6 +21,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../UserContext";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -31,8 +32,9 @@ const validationSchema = Yup.object({
     .required("Password is required"),
 });
 
-export default function Login({ setShowLogin, setShowAuth, setUserData }) {
+export default function Login({ setShowLogin, setShowAuth }) {
   const [showPassword, setShowPassword] = React.useState(false);
+  const { login } = useContext(UserContext);
   const navigate = useNavigate();
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -52,10 +54,8 @@ export default function Login({ setShowLogin, setShowAuth, setUserData }) {
         password: values.password,
       });
       if (response.status === 200) {
-        setUserData({
-          loggedIn: true,
-          token: response.data.Message.token,
-        });
+        const token = response.data.Message.token;
+        login(token);
         navigate("/dashboard");
       }
     },
