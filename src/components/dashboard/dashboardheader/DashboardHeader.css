@@ -41,3 +41,8 @@
   nav ul li a:hover {
     color: #ffd600; /* Yellow text color on hover */
   }
+
+.float-right {
+  float: right;
+}
+

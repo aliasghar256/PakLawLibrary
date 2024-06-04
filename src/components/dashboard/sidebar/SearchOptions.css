@@ -2,7 +2,7 @@
 
 /* Styles for the container div */
 .sidebar-container {
-    background-color: white; /* Dark blue background */
+    
     width: 240px; /* Width of the sidebar */
     padding: 20px; /* Padding around the content */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
@@ -29,7 +29,7 @@
     cursor: pointer; /* Change cursor to pointer on hover */
     transition: background-color 0.3s ease; /* Smooth transition for background color */
     border-color: #45a049;
-    border-style: dashed;
+    border-style: solid;
   }
   
   .sidebar-button:hover {
