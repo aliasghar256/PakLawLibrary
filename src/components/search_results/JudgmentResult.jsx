@@ -56,14 +56,16 @@
 
 // export default JudgmentResult;
 
-
-import React from "react";
 import "./JudgmentResult.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
+import React, { useContext } from "react";
+import UserContext from "../../UserContext";
 
 const JudgmentResult = ({ judgment, query, showHighlight, onDelete }) => {
+  const { userData } = useContext(UserContext);
+
   // Function to highlight the search query in the snippet
   const highlightQuery = (text, query) => {
     const regex = new RegExp(`(${query})`, "gi");
@@ -75,24 +77,37 @@ const JudgmentResult = ({ judgment, query, showHighlight, onDelete }) => {
     navigate(`/viewjudgment/${judgment.JudgmentID}`);
   };
 
-  const deleteBookmark = async () => {
+  const deleteBookmark = async (e) => {
     try {
-      const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAZ21haWwuY29tIiwiaWQiOiI2NWNmNWYxNWU5OTE3MTE3OWEwNTlkMTYiLCJpYXQiOjE3MTc0Nzg1OTcsImV4cCI6MTcxNzU2NDk5N30.jhk8dqGmcc0nRy8VusnoCPwDX-DmodAkUYeQ1Q44oN8";
-
-      await axios.delete(
-        "http://127.0.0.1:3001/favorites/delete",
-        { JudgmentID: judgment.JudgmentID },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      if (onDelete) {
-        onDelete(judgment.JudgmentID);
+      const url = `http://127.0.0.1:3001/favorites/delete`;
+      const response = await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${userData.token}`,
+          JudgmentID: judgment.JudgmentID,
+        },
+      });
+      if (response) {
+        console.log(response);
       }
     } catch (error) {
       console.error("Error deleting bookmark:", error);
+    }
+  };
+
+  const addBookmark = async (e) => {
+    try {
+      const url = `http://127.0.0.1:3001/favorites/add`;
+      const response = await axios.post(url, {
+        headers: {
+          Authorization: `Bearer ${userData.token}`,
+          JudgmentID: judgment.JudgmentID,
+        },
+      });
+      if (response) {
+        console.log(response);
+      }
+    } catch (error) {
+      console.error("Error Adding bookmark:", error);
     }
   };
 
@@ -124,7 +139,9 @@ const JudgmentResult = ({ judgment, query, showHighlight, onDelete }) => {
         <button className="view-judgment-btn" onClick={handleViewJudgmentClick}>
           View Judgment
         </button>
-        <Button variant="outlined">Bookmark</Button>
+        <Button variant="outlined" onClick={addBookmark}>
+          Bookmark
+        </Button>
         <Button variant="outlined" onClick={deleteBookmark}>
           Delete Bookmark
         </Button>
