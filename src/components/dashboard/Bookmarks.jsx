@@ -1,4 +1,5 @@
 //SearchResults.jsx
+import DashboardHeader from "./dashboardheader/DashboardHeader";
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
@@ -38,7 +39,10 @@ function Bookmarks({ searchBarIndex }) {
 
     fetchData();
   }, []);
+  
   return (
+    <>
+    <DashboardHeader />
     <div className="bookmarks">
       <h1 className="search-results-heading">Bookmarks</h1>
       {isLoading ? (
@@ -57,6 +61,7 @@ function Bookmarks({ searchBarIndex }) {
         </>
       )}
     </div>
+    </>
   );
 }
 

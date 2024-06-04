@@ -3,7 +3,7 @@
 /* Styles for the container div */
 .sidebar-container {
     background-color: #003052; /* Dark blue background */
-    width: 200px; /* Width of the sidebar */
+    width: 240px; /* Width of the sidebar */
     padding: 20px; /* Padding around the content */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     position: fixed; /* Fixed position to stay at the side */
