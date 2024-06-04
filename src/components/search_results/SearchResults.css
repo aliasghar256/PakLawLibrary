@@ -1,7 +1,8 @@
 .search-results{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: right;
     justify-content: center;
     margin-top: 20px;
+    width: 60%;
 }
