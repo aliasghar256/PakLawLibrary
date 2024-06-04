@@ -22,6 +22,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../UserContext";
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -49,6 +51,8 @@ export default function Login({ setShowLogin, setShowAuth }) {
     onSubmit: async (values) => {
       const url = `http://127.0.0.1:3001/user/login`;
 
+      try {
+
       const response = await axios.post(url, {
         email: values.email,
         password: values.password,
@@ -57,6 +61,31 @@ export default function Login({ setShowLogin, setShowAuth }) {
         const token = response.data.Message.token;
         login(token);
         navigate("/dashboard");
+        Toastify({
+
+          text: "LogIn Successful",
+          
+          duration: 2000,
+
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+          
+          }).showToast();
+      }
+    }
+      catch(error) {
+        Toastify({
+
+          text: "LogIn Failed",
+          
+          duration: 2000,
+
+          style: {
+            background: "linear-gradient(to right, #c30010, #f94449)",
+          },
+          
+          }).showToast();
       }
     },
   });

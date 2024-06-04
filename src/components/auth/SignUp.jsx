@@ -20,6 +20,8 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -50,13 +52,40 @@ export default function SignUp({ setShowLogin, setShowAuth }) {
     onSubmit: async (values) => {
       const url = `http://127.0.0.1:3001/user/signup`;
 
+      try {
       const response = await axios.post(url, {
         email: values.email,
         password: values.password,
       });
       if (response.status === 201) {
-        alert(JSON.stringify(values, null, 2));
+        //alert(JSON.stringify(values, null, 2));
+
+        Toastify({
+
+          text: "SignUp Successful",
+          
+          duration: 2000,
+
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+          
+          }).showToast();
       }
+    }
+    catch(error) {
+      Toastify({
+
+        text: "SignUp Failed",
+        
+        duration: 2000,
+
+        style: {
+          background: "linear-gradient(to right, #c30010, #f94449)",
+        },
+        
+        }).showToast();
+    }
     },
   });
 
