@@ -63,7 +63,13 @@ import axios from "axios";
 import React, { useContext } from "react";
 import UserContext from "../../UserContext";
 
-const JudgmentResult = ({ judgment, query, showHighlight, onDelete }) => {
+const JudgmentResult = ({
+  judgment,
+  query,
+  showHighlight,
+  showAddBookmark,
+  showDeleteBookmark,
+}) => {
   const { userData } = useContext(UserContext);
 
   // Function to highlight the search query in the snippet
@@ -94,20 +100,24 @@ const JudgmentResult = ({ judgment, query, showHighlight, onDelete }) => {
     }
   };
 
-  const addBookmark = async (e) => {
+  const addBookmark = async () => {
     try {
       const url = `http://127.0.0.1:3001/favorites/add`;
-      const response = await axios.post(url, {
-        headers: {
-          Authorization: `Bearer ${userData.token}`,
-          JudgmentID: judgment.JudgmentID,
-        },
-      });
+      const response = await axios.post(
+        url,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+            judgmentid: judgment.JudgmentID, // Ensure this matches the key in the backend
+          },
+        }
+      );
       if (response) {
         console.log(response);
       }
     } catch (error) {
-      console.error("Error Adding bookmark:", error);
+      console.error("Error adding bookmark:", error);
     }
   };
 
@@ -139,12 +149,16 @@ const JudgmentResult = ({ judgment, query, showHighlight, onDelete }) => {
         <button className="view-judgment-btn" onClick={handleViewJudgmentClick}>
           View Judgment
         </button>
-        <Button variant="outlined" onClick={addBookmark}>
-          Bookmark
-        </Button>
-        <Button variant="outlined" onClick={deleteBookmark}>
-          Delete Bookmark
-        </Button>
+        {showAddBookmark && (
+          <Button variant="outlined" onClick={addBookmark}>
+            Bookmark
+          </Button>
+        )}
+        {showDeleteBookmark && (
+          <Button variant="outlined" onClick={deleteBookmark}>
+            Delete Bookmark
+          </Button>
+        )}
       </div>
     </div>
   );

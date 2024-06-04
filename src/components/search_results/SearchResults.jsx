@@ -59,6 +59,7 @@ function SearchResults({ searchBarIndex, query }) {
                 judgment={judgment}
                 query={query.headers.keyword}
                 showHighlight={showHighlight}
+                showAddBookmark={true}
               />
             ))}
         </>

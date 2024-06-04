@@ -39,28 +39,35 @@ function Bookmarks({ searchBarIndex }) {
 
     fetchData();
   }, []);
-  
+
   return (
     <>
-    <DashboardHeader />
-    <div className="bookmarks">
-      <h1 className="search-results-heading">Bookmarks</h1>
-      {isLoading ? (
-        <l-miyagi size="65" stroke="3.5" speed="0.5" color="#04b4e0"></l-miyagi>
-      ) : (
-        <>
-          <p>Displaying {numberOfJudgments} results:</p>
-          {judgmentData &&
-            judgmentData.map((judgment) => (
-              <JudgmentResult
-                key={judgment.JudgmentID}
-                judgment={judgment.judgment_ID}
-                showHighlight={showHighlight}
-              />
-            ))}
-        </>
-      )}
-    </div>
+      <DashboardHeader />
+      <div className="bookmarks">
+        <h1 className="search-results-heading">Bookmarks</h1>
+        {isLoading ? (
+          <l-miyagi
+            size="65"
+            stroke="3.5"
+            speed="0.5"
+            color="#04b4e0"
+          ></l-miyagi>
+        ) : (
+          <>
+            <p>Displaying {numberOfJudgments} results:</p>
+            {judgmentData &&
+              judgmentData.map((judgment) => (
+                <JudgmentResult
+                  key={judgment.JudgmentID}
+                  judgment={judgment.judgment_ID}
+                  showHighlight={showHighlight}
+                  showAddBookmark={false}
+                  showDeleteBookmark={true}
+                />
+              ))}
+          </>
+        )}
+      </div>
     </>
   );
 }
