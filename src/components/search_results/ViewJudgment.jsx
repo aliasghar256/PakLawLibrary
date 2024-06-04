@@ -16,7 +16,12 @@ function ViewJudgment() {
     const fetchData = async () => {
       try {
         const url = `http://127.0.0.1:3001/judgment/searchbyid?JudgmentID=${JudgmentID}`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAZ21haWwuY29tIiwiaWQiOiI2NWNmNWYxNWU5OTE3MTE3OWEwNTlkMTYiLCJpYXQiOjE3MTc0Nzg1OTcsImV4cCI6MTcxNzU2NDk5N30.jhk8dqGmcc0nRy8VusnoCPwDX-DmodAkUYeQ1Q44oN8",
+          },
+        });
         setJudgmentData(response.data.judgment);
       } catch (error) {
         console.error("Error:", error);

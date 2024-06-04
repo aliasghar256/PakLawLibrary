@@ -9,6 +9,7 @@ import SearchResults from './components/search_results/SearchResults';
 import './App.css';
 import Auth from './components/auth/Auth';
 import Dashboard from './components/dashboard/Dashboard';
+import Bookmarks from './components/dashboard/Bookmarks';
 
 
 const App = () => {
@@ -23,6 +24,8 @@ const App = () => {
         <Route path="/viewjudgment/:JudgmentID" element={<ViewJudgment />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/bookmarks" element={<Bookmarks />} />
+
       </Routes>
     </Router>
   );

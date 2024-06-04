@@ -27,6 +27,10 @@ export default function JudgmentSearch() {
     "Islamabad Supreme Court",
   ];
 
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  // };
+
   return (
     <form className="search-form">
       <input

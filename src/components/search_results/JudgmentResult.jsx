@@ -3,7 +3,7 @@ import React from "react";
 import "./JudgmentResult.css";
 import { useNavigate } from "react-router-dom";
 
-const JudgmentResult = ({ judgment, query }) => {
+const JudgmentResult = ({ judgment, query, showHighlight }) => {
   // Function to highlight the search query in the snippet
   const highlightQuery = (text, query) => {
     const regex = new RegExp(`(${query})`, "gi");
@@ -23,14 +23,16 @@ const JudgmentResult = ({ judgment, query }) => {
         <h3>{judgment.CaseYear}</h3>
       </div>
       <div className="judgment-body">
-        <p>
-          <strong>Snippet:</strong>{" "}
-          <span
-            dangerouslySetInnerHTML={{
-              __html: highlightQuery(judgment.snippet, query),
-            }}
-          ></span>
-        </p>
+        {showHighlight && (
+          <p>
+            <strong>Snippet:</strong>{" "}
+            <span
+              dangerouslySetInnerHTML={{
+                __html: highlightQuery(judgment.snippet, query),
+              }}
+            ></span>
+          </p>
+        )}
       </div>
       <div className="judgment-footer">
         <p>
