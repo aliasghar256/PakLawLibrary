@@ -4,6 +4,8 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useContext } from "react";
 import UserContext from "../../UserContext";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const JudgmentResult = ({
   judgment,
@@ -35,12 +37,30 @@ const JudgmentResult = ({
           JudgmentID: judgment.JudgmentID,
         },
       });
-      if (response) {
+      if (response.status === 200) {
         console.log(response);
+        Toastify({
+          text: "Bookmark Deleted Successfully",
+
+          duration: 2000,
+
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+        }).showToast();
       }
       onButtonClick();
     } catch (error) {
       console.error("Error deleting bookmark:", error);
+      Toastify({
+        text: "Error Deleting Bookmark",
+
+        duration: 2000,
+
+        style: {
+          background: "linear-gradient(to right, #c30010, #f94449)",
+        },
+      }).showToast();
     }
   };
 
@@ -57,11 +77,29 @@ const JudgmentResult = ({
           },
         }
       );
-      if (response) {
+      if (response.status === 200) {
         console.log(response);
+        Toastify({
+          text: "Bookmark Added",
+
+          duration: 2000,
+
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+        }).showToast();
       }
     } catch (error) {
       console.error("Error adding bookmark:", error);
+      Toastify({
+        text: "Error Adding Bookmark",
+
+        duration: 2000,
+
+        style: {
+          background: "linear-gradient(to right, #c30010, #f94449)",
+        },
+      }).showToast();
     }
   };
 
