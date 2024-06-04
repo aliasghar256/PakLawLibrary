@@ -26,10 +26,12 @@ export default function DashboardHeader() {
             <li>
               <Link to="/bookmarks">Bookmarks</Link>
             </li>
+            <li class="float-right">
+            <Button variant="contained" color="primary" onClick={handleLogout}>
+              Logout
+            </Button>
+            </li>
           </ul>
-          <Button variant="contained" color="primary" onClick={handleLogout}>
-            Logout
-          </Button>
         </nav>
       </header>
     </>
