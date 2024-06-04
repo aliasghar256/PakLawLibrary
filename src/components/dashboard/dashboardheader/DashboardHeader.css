@@ -1,39 +1,43 @@
 /* DashboardHeader.css */
 
-.MuiAppBar-root {
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Styles for the header element */
+  header {
     background-color: #003052; /* Dark blue background */
-    padding: 0.5rem 1rem; /* Add some padding */
     color: #fff; /* White text color */
+    padding: 20px; /* Padding around the header */
+    font-family: Arial, sans-serif; /* Use a fallback font */
   }
   
-  .MuiTabs-root {
-    display: flex; /* Arrange tabs horizontally */
-    justify-content: space-between; /* Align tabs at opposite ends */
+  /* Styles for the navigation */
+  nav ul {
+    list-style-type: none; /* Remove bullet points from the list */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
   }
   
-  .MuiTabs-indicator {
-    /* Style the indicator (underline) below the selected tab */
-    background-color: #fff; /* White underline for selected tab */
-    height: 3px; /* Adjust underline height */
+  nav ul li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 20px; /* Add some spacing between list items */
   }
   
-  .MuiTab-root {
-    /* Style individual tabs */
-    min-width: auto; /* Allow for dynamic tab widths */
-    padding: 0.5rem 1rem; /* Adjust padding as needed */
-    font-weight: bold; /* Make tab text bold */
+  nav ul li:last-child {
+    margin-right: 0; /* Remove margin from the last list item */
+  }
+  
+  nav ul li a {
+    color: #fff; /* White text color for links */
     text-decoration: none; /* Remove underline from links */
-    cursor: pointer; /* Indicate clickable tabs */
-    transition: color 0.2s ease-in-out; /* Smooth transition on hover */
+    font-size: 18px; /* Font size for links */
+    transition: color 0.3s ease; /* Smooth transition for link color */
   }
   
-  .MuiTab-root:hover {
-    color: #ddd; /* Light gray text color on hover */
+  nav ul li a:hover {
+    color: #ffd600; /* Yellow text color on hover */
   }
-  
-  .MuiTab-root.Mui-selected {
-    /* Styles for the active tab */
-    color: #fff; /* Maintain white text color for active tab */
-    font-weight: bold; /* Keep bold text for active tab */
-  }
-  

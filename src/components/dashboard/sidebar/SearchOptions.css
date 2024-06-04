@@ -1,38 +1,35 @@
-.MuiAppBar-root {
+/* SearchOptions.css */
+
+/* Styles for the container div */
+.sidebar-container {
     background-color: #003052; /* Dark blue background */
-    padding: 0.5rem 1rem; /* Add some padding */
-    color: #fff; /* White text color */
+    width: 200px; /* Width of the sidebar */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    position: fixed; /* Fixed position to stay at the side */
+    top: 7%; /* Align to the top of the viewport */
+    bottom: 0; /* Align to the bottom of the viewport */
+    left: 0; /* Align to the left */
+    z-index: 1; /* Ensure it's above other content */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
   }
   
-  .MuiTabs-root {
-    display: flex;
-    flex-direction: column; /* Stack tabs vertically */
-    /* justify-content: space-between; (Optional for horizontal alignment) */
+  /* Styles for the buttons */
+  .sidebar-button {
+    display: block; /* Display buttons as block elements */
+    width: 100%; /* Full width */
+    margin-bottom: 15px; /* Spacing between buttons */
+    padding: 10px; /* Padding inside buttons */
+    border: none; /* Remove default button border */
+    background-color: white; /* Green background */
+    color: black; /* White text color */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center align text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
   }
   
-  .MuiTabs-indicator {
-    /* Style the indicator (underline) below the selected tab */
-    background-color: #fff; /* White underline for selected tab */
-    height: 3px; /* Adjust underline height */
+  .sidebar-button:hover {
+    background-color: #45a049; /* Darker green on hover */
   }
-  
-  .MuiTab-root {
-    /* Style individual tabs */
-    min-width: auto; /* Allow for dynamic tab widths */
-    padding: 0.5rem 1rem; /* Adjust padding as needed */
-    font-weight: bold; /* Make tab text bold */
-    text-decoration: none; /* Remove underline from links */
-    cursor: pointer; /* Indicate clickable tabs */
-    transition: color 0.2s ease-in-out; /* Smooth transition on hover */
-  }
-  
-  .MuiTab-root:hover {
-    color: #ddd; /* Light gray text color on hover */
-  }
-  
-  .MuiTab-root.Mui-selected {
-    /* Styles for the active tab */
-    color: #fff; /* Maintain white text color for active tab */
-    font-weight: bold; /* Keep bold text for active tab */
-  }
-  
