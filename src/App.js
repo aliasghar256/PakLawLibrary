@@ -25,7 +25,6 @@ const App = () => {
         <Route path="/auth" element={<Auth />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/bookmarks" element={<Bookmarks />} />
-
       </Routes>
     </Router>
   );

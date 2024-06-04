@@ -19,6 +19,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import axios from "axios";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -32,7 +33,7 @@ const validationSchema = Yup.object({
     .required("Confirm Password is required"),
 });
 
-export default function SignUp({ setShowLogin , setShowAuth}) {
+export default function SignUp({ setShowLogin, setShowAuth }) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
@@ -46,8 +47,16 @@ export default function SignUp({ setShowLogin , setShowAuth}) {
       confirmPassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      const url = `http://127.0.0.1:3001/user/signup`;
+
+      const response = await axios.post(url, {
+        email: values.email,
+        password: values.password,
+      });
+      if (response.status === 201) {
+        alert(JSON.stringify(values, null, 2));
+      }
     },
   });
 
@@ -185,4 +194,5 @@ export default function SignUp({ setShowLogin , setShowAuth}) {
         </Button>
       </DialogActions>
     </Dialog>
-);}
+  );
+}

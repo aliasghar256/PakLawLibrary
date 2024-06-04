@@ -19,6 +19,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import axios from "axios";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -29,7 +30,7 @@ const validationSchema = Yup.object({
     .required("Password is required"),
 });
 
-export default function Login({ setShowLogin , setShowAuth}) {
+export default function Login({ setShowLogin, setShowAuth }) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
@@ -42,8 +43,16 @@ export default function Login({ setShowLogin , setShowAuth}) {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      const url = `http://127.0.0.1:3001/user/login`;
+
+      const response = await axios.post(url, {
+        email: values.email,
+        password: values.password,
+      });
+      if (response.status === 200) {
+        alert(JSON.stringify(values, null, 2));
+      }
     },
   });
 
@@ -64,7 +73,7 @@ export default function Login({ setShowLogin , setShowAuth}) {
         <Avatar style={{ backgroundColor: "#1bbd7e", margin: "0 auto" }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{ margin: "10px 0" }}>
+        <Typography component="h2" variant="h5" style={{ margin: "10px 0" }}>
           Login
         </Typography>
       </DialogTitle>
@@ -165,4 +174,5 @@ export default function Login({ setShowLogin , setShowAuth}) {
         </Button>
       </DialogActions>
     </Dialog>
-);}
+  );
+}

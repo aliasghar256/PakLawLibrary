@@ -2,6 +2,7 @@
 import React from "react";
 import "./JudgmentResult.css";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const JudgmentResult = ({ judgment, query, showHighlight }) => {
   // Function to highlight the search query in the snippet
@@ -42,6 +43,7 @@ const JudgmentResult = ({ judgment, query, showHighlight }) => {
         <button className="view-judgment-btn" onClick={handleViewJudgmentClick}>
           View Judgment
         </button>
+        <Button variant="outlined">Bookmark</Button>
       </div>
     </div>
   );
