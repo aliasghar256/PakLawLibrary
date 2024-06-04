@@ -1,6 +1,5 @@
 //SearchResults.jsx
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import JudgmentResult from "./JudgmentResult";
 import "./SearchResults.css";
@@ -11,7 +10,6 @@ miyagi.register();
 // Default values shown
 
 function SearchResults({ searchBarIndex, query }) {
-  const [searchParams] = useSearchParams();
   const [judgmentData, setJudgmentData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [numberOfJudgments, setNumberOfJudgments] = useState(0);
@@ -27,6 +25,7 @@ function SearchResults({ searchBarIndex, query }) {
         }
         const response = await axios.get(url, query);
         setJudgmentData(response.data.results);
+        console.log("Judgment Data: ", judgmentData);
       } catch (error) {
         console.error("Error:", error);
       } finally {
