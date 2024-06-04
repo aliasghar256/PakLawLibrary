@@ -33,7 +33,7 @@ export default function JudgmentSearch({ setQuery, token }) {
       headers: {
         Authorization: `Bearer ${token}`,
         keyword: data.keyword,
-        court: data.court,
+        court: data.courtName,
         judgeName: data.judgeName,
         lawyerName: data.lawyerName,
         appellantOpponent: data.appellantOpponent,
@@ -57,7 +57,7 @@ export default function JudgmentSearch({ setQuery, token }) {
       <select
         id="courtName"
         name="courtName"
-        value={data.court}
+        value={data.courtName}
         onChange={handleForm}
         className="search-select"
       >

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./DashboardHeader.css";
 
 export default function DashboardHeader() {
@@ -7,10 +8,10 @@ export default function DashboardHeader() {
         <nav>
           <ul>
             <li>
-              <a href="/dashboard">Dashboard</a>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <a href="/bookmarks">Bookmarks</a>
+              <Link to="/bookmarks">Bookmarks</Link>
             </li>
           </ul>
         </nav>
