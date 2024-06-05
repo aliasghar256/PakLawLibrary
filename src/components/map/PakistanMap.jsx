@@ -39,17 +39,17 @@ const PakistanMap = () => {
   const onEachProvince = (province, layer) => {
     layer.on({
       mouseover: (event) => {
-        setSelectedProvince({
-          name: province.properties.name,
-          population: "Population data",
-        }); // Update this line as needed
+        // setSelectedProvince({
+        //   name: province.properties.name,
+        //   population: "Population data",
+        // }); // Update this line as needed
         event.target.setStyle(highlightStyle);
       },
       mouseout: (event) => {
-        setSelectedProvince({
-          name: "Select a province",
-          population: "Population data",
-        });
+        // setSelectedProvince({
+        //   name: "Select a province",
+        //   population: "Population data",
+        // });
         event.target.setStyle(defaultStyle);
       },
       click: (event) => {

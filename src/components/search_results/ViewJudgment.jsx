@@ -27,7 +27,7 @@ function ViewJudgment() {
           },
         });
         setJudgmentData(response.data.judgment);
-        console.log("Response from viewJUdgment:", response);
+        // console.log("Response from viewJUdgment:", response);
       } catch (error) {
         console.error("Error:", error);
       } finally {
