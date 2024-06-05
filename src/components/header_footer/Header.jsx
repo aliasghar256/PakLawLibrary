@@ -38,7 +38,7 @@ const Header = ({ setShowAuth }) => {
             <li>
               <a href="/contact">Contact</a>
             </li>
-          </ul>
+          <li class="float-right">
           <Button
             variant="contained"
             color="primary"
@@ -46,6 +46,8 @@ const Header = ({ setShowAuth }) => {
           >
             Log In
           </Button>
+          </li>
+          </ul>
         </nav>
       </span>
     </header>
