@@ -86,6 +86,7 @@ function ViewJudgment() {
           />
         </div>
       </div>
+      <div align="center">
       <Button
         variant="contained"
         color="primary"
@@ -94,6 +95,7 @@ function ViewJudgment() {
       >
         Take Notes
       </Button>
+      </div>
       {isNoteDialogOpen && (
         <NoteTakingDialog
           open={isNoteDialogOpen}
