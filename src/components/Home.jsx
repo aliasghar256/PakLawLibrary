@@ -17,7 +17,6 @@ export default function Home({ setUserData }) {
           <img className="logo" src="/prussianbluelogo.svg" alt="logo" />
           <h1 className="name">Pakistan Law Library</h1>
         </div>
-        <SearchBar className="search-bar" />
       </div>
       {showAuth && <Auth setShowAuth={setShowAuth} setUserData={setUserData} />}
       <div>

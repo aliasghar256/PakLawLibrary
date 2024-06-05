@@ -26,6 +26,7 @@
     width: 80px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 7px; /* Space between logo and company name */
+    margin-top: 35px;
     padding: 0;
   }
   
